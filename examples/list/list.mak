@@ -44,7 +44,8 @@ depend:
 	make -f $(MAKNAM) $(EXE)
 
 clean:
-	-rm $(EXE)
-	-rm $(OBJFLS)
+	-rm -rf $(EXE)
+	-rm -rf $(OBJFLS)
+	-rm -rf $(ALGOWC_TOPDIR)/source/$(OBJFLS)
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
