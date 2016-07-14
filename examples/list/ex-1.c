@@ -63,6 +63,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     // Perform example #2 
+    print_log_header("EXAMPLE #2");
     element = list_head(&list);
 
     for (i = 0; i < 7; i++)
@@ -77,6 +78,8 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     // Perform example #3
+    print_log_header("EXAMPLE #3");
+
     fprintf(stdout, "Inserting 011 at the tail of the list\n");
 
     *data = 11;
@@ -88,6 +91,7 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Removing an element after the first element\n");
 
     // Perform example #4 
+    print_log_header("EXAMPLE #4");
     element = list_head(&list);
     if (list_rem_next(&list, element, (void **)&data) != 0)
        return 1;
@@ -95,6 +99,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     // Perform example #5 
+    print_log_header("EXAMPLE #5");
     fprintf(stdout, "Inserting 012 at the head of the list\n");
 
     *data = 12;
@@ -104,6 +109,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     // Perform example #6 
+    print_log_header("EXAMPLE #6");
     fprintf(stdout, "Iterating and removing the fourth element\n");
 
     element = list_head(&list);
@@ -116,6 +122,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     // Perform example #7
+    print_log_header("EXAMPLE #7");
     fprintf(stdout, "Inserting 013 after the first element\n");
 
     *data = 13;
@@ -125,6 +132,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     // Perform example #8 
+    print_log_header("EXAMPLE #8");
     i = list_is_head(&list, list_head(&list));
     fprintf(stdout, "Testing list_is_head...Value=%d (1=OK)\n", i);
     i = list_is_head(&list, list_tail(&list));
@@ -135,6 +143,7 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Testing list_is_tail...Value=%d (0=OK)\n", i);
 
     // Perform example #9 
+    print_log_header("EXAMPLE #9");
     fprintf(stdout, "Destroying the list\n");
     list_destroy(&list);
 
