@@ -1,4 +1,4 @@
-MAKNAM = list.mak
+MAKNAM = stack.mak
 
 # Define the directories in which to search for library files
 LIBDRS =
@@ -7,17 +7,17 @@ LIBDRS =
 INCDRS = -I$(ALGOWC_TOPDIR)/include
 
 # Define the library files
-LIBFLS = 
+LIBFLS =
 
 # Define the source files
 SRCFLS = ex-1.c\
-	$(ALGOWC_TOPDIR)/source/list.c \
-	$(ALGOWC_TOPDIR)/source/utils.c
-         
-# Define the object files 
+         $(ALGOWC_TOPDIR)/source/list.c\
+         $(ALGOWC_TOPDIR)/source/stack.c
+        
+# Define the object files
 OBJFLS = ex-1.o\
-         $(ALGOWC_TOPDIR)/source/list.o \
-         $(ALGOWC_TOPDIR)/source/utils.o
+         $(ALGOWC_TOPDIR)/source/list.o\
+         $(ALGOWC_TOPDIR)/source/stack.o
 
 # Define the executable
 EXE    = ex-1
@@ -40,12 +40,12 @@ all:
 	make -f $(MAKNAM) depend
 
 depend:
-	make depend $(INCDRS) -f $(MAKNAM) $(SRCFLS)
+	makedepend $(INCDRS) -f $(MAKNAM) $(SRCFLS)
 	make -f $(MAKNAM) $(EXE)
 
 clean:
-	-rm -rf $(EXE)
-	-rm -rf $(OBJFLS)
-	-rm -rf $(ALGOWC_TOPDIR)/source/$(OBJFLS)
+	-rm $(EXE)
+	-rm $(OBJFLS)
+	-rm -rf $(ALGOWC_TOPDIR)/source/$(OBJFLS)  
 
 # DO NOT DELETE THIS LINE -- make depend depends on it

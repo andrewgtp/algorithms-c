@@ -3,10 +3,8 @@
 
 #include "list.h"
 
-/*
- * ------------------------------- list_init ------------------------------
- */
 
+/* ------------------------------- list_init ------------------------------ */
 void list_init(List *list, void (*destroy)(void *data)) {
 
     /* Initialize the list */
@@ -18,10 +16,7 @@ void list_init(List *list, void (*destroy)(void *data)) {
     /* return; */
 }
 
-/*
- * ------------------------------- list_destroy ------------------------------
- */
-
+/* ------------------------------- list_destroy ------------------------------ */
 void list_destroy(List *list) {
 
     void *data;
@@ -39,12 +34,11 @@ void list_destroy(List *list) {
 
     /* No operations are allowed now, but clear the structure as a precaution */
     memset(list, 0, sizeof(List));
+
     /* return; */
 }
 
-/*
- * ------------------------------- list_ins_next ------------------------------
- */
+/* ------------------------------- list_ins_next ------------------------------ */
 int list_ins_next(List *list, ListElmt *element, const void *data) {
 
     ListElmt *new_element;
@@ -84,9 +78,7 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
 
 }
 
-/*
- * ------------------------------- list_rem_next ------------------------------
- */
+/* ------------------------------- list_rem_next ------------------------------ */
 int list_rem_next(List *list, ListElmt *element, void **data) {
 
     ListElmt *old_element;
@@ -127,5 +119,4 @@ int list_rem_next(List *list, ListElmt *element, void **data) {
     list->size--;
 
     return 0;
-
 }
