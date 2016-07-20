@@ -12,8 +12,6 @@ void list_init(List *list, void (*destroy)(void *data)) {
     list->destroy = destroy;
     list->head = NULL;
     list->tail = NULL;
-
-    /* return; */
 }
 
 /* ------------------------------- list_destroy ------------------------------ */
@@ -24,18 +22,16 @@ void list_destroy(List *list) {
     /* Remove each element */
     while (list_size(list) > 0) {
 
-       if (list_rem_next(list, NULL, (void **)&data) == 0 && list->destroy !=
-	  NULL) {
+       int is_not_empty = list_rem_next(list, NULL, (void **)&data);
+       if (is_not_empty == 0 && list->destroy != NULL) {
 
 	  /* Call a user-defined function to free dynamically allocated data. */
 	  list->destroy(data);
-       }
+       }  /* else: nothing to do! */
     }
 
     /* No operations are allowed now, but clear the structure as a precaution */
     memset(list, 0, sizeof(List));
-
-    /* return; */
 }
 
 /* ------------------------------- list_ins_next ------------------------------ */
@@ -45,7 +41,8 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
 
 
     /* Allocate storage for the element */
-    if ((new_element = (ListElmt *)malloc(sizeof(ListElmt))) == NULL)
+    new_element = (ListElmt *)malloc(sizeof(ListElmt));
+    if (new_element == NULL)
        return -1;
 
     /* Insert the element into the list */
@@ -75,7 +72,6 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
     list->size++;
 
     return 0;
-
 }
 
 /* ------------------------------- list_rem_next ------------------------------ */

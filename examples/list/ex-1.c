@@ -38,11 +38,12 @@ int main(int argc, char **argv) {
 
     List               list;
     ListElmt           *element;
-    int                *data, i;
+    int                *data, i, is_not_empty;
 
-    print_log_header("HELLO BRO");
+    print_log_header("DATA STRUCTURES: LISTS");
 
     list_init(&list, free);
+
 
     /***********************************************/
     print_log_header("EXAMPLE #1");
@@ -52,12 +53,14 @@ int main(int argc, char **argv) {
 
     for (i = 10; i > 0; i--) {
 
-       if ((data = (int *)malloc(sizeof(int))) == NULL)
-	  return 1;
+        data = (int *)malloc(sizeof(int));
+        if (data == NULL)
+            return 1;
 
-       *data = i;
+        *data = i;
 
-       if (list_ins_next(&list, NULL, data) != 0)
+        is_not_empty = list_ins_next(&list, NULL, data); 
+	if (is_not_empty != 0)
 	  return 1;
     }
 
@@ -75,7 +78,8 @@ int main(int argc, char **argv) {
     data = list_data(element);
     fprintf(stdout, "Removing an element after the one containing %03d\n", *data);
 
-    if (list_rem_next(&list, element, (void **)&data) != 0)
+    is_not_empty = list_rem_next(&list, element, (void **)&data);
+    if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
@@ -87,7 +91,8 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Inserting 011 at the tail of the list\n");
 
     *data = 11;
-    if (list_ins_next(&list, list_tail(&list), data) != 0)
+    is_not_empty =  list_ins_next(&list, list_tail(&list), data);
+    if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
@@ -99,7 +104,8 @@ int main(int argc, char **argv) {
     /***********************************************/
 
     element = list_head(&list);
-    if (list_rem_next(&list, element, (void **)&data) != 0)
+    is_not_empty = list_rem_next(&list, element, (void **)&data);
+    if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
@@ -111,7 +117,8 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Inserting 012 at the head of the list\n");
 
     *data = 12;
-    if (list_ins_next(&list, NULL, data) != 0)
+    is_not_empty = list_ins_next(&list, NULL, data);
+    if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
@@ -126,7 +133,8 @@ int main(int argc, char **argv) {
     element = list_next(element);
     element = list_next(element);
 
-    if (list_rem_next(&list, element, (void **)&data) != 0)
+    is_not_empty = list_rem_next(&list, element, (void **)&data);
+    if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
@@ -138,7 +146,8 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Inserting 013 after the first element\n");
 
     *data = 13;
-    if (list_ins_next(&list, list_head(&list), data) != 0)
+    is_not_empty =  list_ins_next(&list, list_tail(&list), data);
+    if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
