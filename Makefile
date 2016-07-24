@@ -1,24 +1,24 @@
 # Define the directories in which to search for library files
-LIBDRS =
+PATH_LIBS =
 
 # Define the directories in which to search for include files
-INCDRS = -I$(ALGOWC_TOPDIR)/include
+PATH_INCLUDE = -I$(PATH_ROOT)/include
 
 # Define the library files
-LIBFLS = 
+FILES_LIBS = 
 
 # Define the source files
-SRCFLS = $(ALGOWC_TOPDIR)/examples/list/ex-1.c\
-	$(ALGOWC_TOPDIR)/source/list.c \
-	$(ALGOWC_TOPDIR)/source/utils.c
+FILES_SRC = $(PATH_ROOT)/examples/list/ex-1.c\
+	$(PATH_ROOT)/source/list.c \
+	$(PATH_ROOT)/source/utils.c
          
 # Define the object files 
-OBJFLS = $(ALGOWC_TOPDIR)/examples/list/ex-1.o\
-         $(ALGOWC_TOPDIR)/source/list.o \
-         $(ALGOWC_TOPDIR)/source/utils.o
+FILES_OBJ = $(PATH_ROOT)/examples/list/ex-1.o\
+         $(PATH_ROOT)/source/list.o \
+         $(PATH_ROOT)/source/utils.o
 
 # Define the executable
-EXE    = ex-1
+EXE    = ex.out 
 
 # Define the compile and link options
 CC     = c89
@@ -27,23 +27,39 @@ CFLAGS =
 LFLAGS =
 
 # Define the rules
-$(EXE): $(OBJFLS)
-	$(LL) $(LFLAGS) -o $@ $(OBJFLS) $(LIBDRS) $(LIBFLS)
+$(EXE): $(FILES_OBJ)
+	$(LL) $(LFLAGS) -o $@ $(FILES_OBJ) $(PATH_LIBS) $(FILES_LIBS)
 
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $(INCDRS) $<
+	$(CC) $(CFLAGS) -o $@ -c $(PATH_INCLUDE) $<
+
+list:
+	echo "compile list code"	
+
+dlist:
+	echo "compile dlist code"	
+
+clist:
+	echo "compile clist code"	
+
+stack:
+	echo "compile stack code"	
+
+queue:
+	echo "compile queue code"	
+
 
 all:
 	make clean
 	make depend
 
 depend:
-	make depend $(INCDRS) $(SRCFLS)
+	make depend $(PATH_INCLUDE) $(FILES_SRC)
 	make $(EXE)
 
 clean:
 	-rm -rf $(EXE)
-	-rm -rf $(OBJFLS)
-	-rm -rf $(ALGOWC_TOPDIR)/source/$(OBJFLS)
+	-rm -rf $(FILES_OBJ)
+	-rm -rf $(PATH_ROOT)/source/$(FILES_OBJ)
 
 # DO NOT DELETE THIS LINE -- make depend depends on it

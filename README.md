@@ -9,7 +9,7 @@ The purpose of this repo is to demonstrate algorithms in C based on a fork from 
 Add this line to the bottom of your .bash_profile so that Makefile
 can see your code:
 
-export ALGOWC_TOPDIR=<path to your git clone here>/cs/C/demo_louden
+export PATH_ROOT=<path to your git clone here>/cs/C/demo_louden
 
 
 ### Copyright/Disclaimer
