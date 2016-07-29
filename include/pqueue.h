@@ -8,7 +8,9 @@
 typedef Heap PQueue;
 
 
-/* --------------------------- Public Interface --------------------------- */
+/***************************************
+*             Public API               *
+***************************************/
 #define pqueue_init heap_init
 #define pqueue_destroy heap_destroy
 #define pqueue_insert heap_insert

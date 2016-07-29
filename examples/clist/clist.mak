@@ -1,85 +1,34 @@
-# ****************************************************************************
-# *                                                                          *
-# *  clist.mak                                                               *
-# *  =========                                                               * 
-# *                                                                          *
-# ****************************************************************************
-
-# ****************************************************************************
-# *                                                                          *
-# *  Define the name of the makefile.                                        *
-# *                                                                          *
-# ****************************************************************************
-
 MAKNAM = clist.mak
 
-# ****************************************************************************
-# *                                                                          *
-# *  Define the directories in which to search for library files.            *
-# *                                                                          *
-# ****************************************************************************
-
+# Define the directories in which to search for library files
 LIBDRS =
 
-# ****************************************************************************
-# *                                                                          *
-# *  Define the directories in which to search for include files.            *
-# *                                                                          *
-# ****************************************************************************
-
+# Define the directories in which to search for include files
 INCDRS = -I$(ALGOWC_TOPDIR)/include
 
-# ****************************************************************************
-# *                                                                          *
-# *  Define the library files.                                               *
-# *                                                                          *
-# ****************************************************************************
+# Define the library files
+LIBFLS = 
 
-LIBFLS =
-
-# ****************************************************************************
-# *                                                                          *
-# *  Define the source files.                                                *
-# *                                                                          *
-# ****************************************************************************
-
+# Define the source files
 SRCFLS = ex-1.c\
-         $(ALGOWC_TOPDIR)/clist.c
+	$(ALGOWC_TOPDIR)/source/clist.c \
+	$(ALGOWC_TOPDIR)/source/utils.c
          
-# ****************************************************************************
-# *                                                                          *
-# *  Define the object files.                                                *
-# *                                                                          *
-# ****************************************************************************
-
+# Define the object files 
 OBJFLS = ex-1.o\
-         $(ALGOWC_TOPDIR)/clist.o
+         $(ALGOWC_TOPDIR)/source/clist.o \
+         $(ALGOWC_TOPDIR)/source/utils.o
 
-# ****************************************************************************
-# *                                                                          *
-# *  Define the executable.                                                  *
-# *                                                                          *
-# ****************************************************************************
+# Define the executable
+EXE    = ex-1
 
-EXE    = ex-1.exe
-
-# ****************************************************************************
-# *                                                                          *
-# *  Define the compile and link options.                                    *
-# *                                                                          *
-# ****************************************************************************
-
+# Define the compile and link options
 CC     = c89
 LL     = c89
 CFLAGS =
 LFLAGS =
 
-# ****************************************************************************
-# *                                                                          *
-# *  Define the rules.                                                       *
-# *                                                                          *
-# ****************************************************************************
-
+# Define the rules
 $(EXE): $(OBJFLS)
 	$(LL) $(LFLAGS) -o $@ $(OBJFLS) $(LIBDRS) $(LIBFLS)
 
@@ -91,11 +40,12 @@ all:
 	make -f $(MAKNAM) depend
 
 depend:
-	makedepend $(INCDRS) -f $(MAKNAM) $(SRCFLS)
+	make depend $(INCDRS) -f $(MAKNAM) $(SRCFLS)
 	make -f $(MAKNAM) $(EXE)
 
 clean:
-	-rm $(EXE)
-	-rm $(OBJFLS)
+	-rm -rf $(EXE)
+	-rm -rf $(OBJFLS)
+	-rm -rf $(ALGOWC_TOPDIR)/source/$(OBJFLS)
 
-# DO NOT DELETE THIS LINE -- make depend depends on it.
+# DO NOT DELETE THIS LINE -- make depend depends on it

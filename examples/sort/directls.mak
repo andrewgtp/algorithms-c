@@ -75,7 +75,7 @@ EXE    = ex-2.exe
 
 CC     = c89
 LL     = c89
-CFLAGS = -D_HPUX_SOURCE
+CFLAGS = -D _HPUX_SOURCE
 LFLAGS =
 
 # ****************************************************************************
