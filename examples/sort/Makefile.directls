@@ -1,0 +1,11 @@
+FILES_SRC = $(PATH_EX)/sort/ex-2.c\
+	$(PATH_SRC)/directls.c \
+	$(PATH_SRC)/issort.c \
+	$(PATH_SRC)/qksort.c \
+	$(PATH_SRC)/utils.c
+
+FILES_OBJ = $(PATH_EX)/sort/ex-2.o\
+	$(PATH_SRC)/directls.o \
+	$(PATH_SRC)/issort.o \
+	$(PATH_SRC)/qksort.o \
+        $(PATH_SRC)/utils.o

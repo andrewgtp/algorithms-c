@@ -24,7 +24,7 @@ FILES_OBJ = $(PATH_EX)/$(TARGET)/ex-1.o\
 # partial Makefiles will override for special cases
 ifeq ($(TARGET),clist2)
     include examples/clist/Makefile.$(TARGET)
-else ifeq ($(TARGET), $(filter $(TARGET),stack queue pqueue))
+else ifeq ($(TARGET), $(filter $(TARGET),stack queue pqueue sort))
     include examples/$(TARGET)/Makefile.$(TARGET)
 else ifeq ($(TARGET),recurse-facttail)
     include examples/recurse/Makefile.facttail
@@ -38,6 +38,8 @@ else ifeq ($(TARGET),set)
     include examples/$(TARGET)/Makefile.$(TARGET)
 else ifeq ($(TARGET),set-cover)
     include examples/set/Makefile.cover
+else ifeq ($(TARGET),directls)
+    include examples/sort/Makefile.directls
 endif
 
 # define the executable
@@ -57,7 +59,7 @@ $(EXE): $(FILES_OBJ)
 .c.o:
 	$(CC) $(CFLAGS) -o $@ -c $(PATH_INCLUDE) $<
 
-list clist clist2 dlist pqueue queue stack recurse-factor recurse-facttail search spell set set-cover:
+list clist clist2 dlist pqueue queue stack recurse-factor recurse-facttail search spell set set-cover sort directls:
 	make clean
 	@echo "$@" > TARGET 
 	make depend
