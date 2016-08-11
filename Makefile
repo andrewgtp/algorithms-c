@@ -34,6 +34,10 @@ else ifeq ($(TARGET),search)
     include examples/$(TARGET)/Makefile.$(TARGET)
 else ifeq ($(TARGET),spell)
     include examples/search/Makefile.$(TARGET)
+else ifeq ($(TARGET),set)
+    include examples/$(TARGET)/Makefile.$(TARGET)
+else ifeq ($(TARGET),set-cover)
+    include examples/set/Makefile.cover
 endif
 
 # define the executable
@@ -53,7 +57,7 @@ $(EXE): $(FILES_OBJ)
 .c.o:
 	$(CC) $(CFLAGS) -o $@ -c $(PATH_INCLUDE) $<
 
-list clist clist2 dlist pqueue queue stack recurse-factor recurse-facttail search spell:
+list clist clist2 dlist pqueue queue stack recurse-factor recurse-facttail search spell set set-cover:
 	make clean
 	@echo "$@" > TARGET 
 	make depend
