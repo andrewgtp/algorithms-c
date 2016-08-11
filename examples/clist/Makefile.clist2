@@ -1,0 +1,9 @@
+FILES_SRC = $(PATH_EX)/clist/ex-2.c\
+	$(PATH_SRC)/clist.c \
+	$(PATH_SRC)/page.c \
+	$(PATH_SRC)/utils.c
+
+FILES_OBJ = $(PATH_EX)/clist/ex-2.o\
+         $(PATH_SRC)/clist.o \
+         $(PATH_SRC)/page.o \
+         $(PATH_SRC)/utils.o
