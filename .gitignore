@@ -2,7 +2,6 @@
 *.sw[op]
 **/*.o
 **/ex-1
-ex.out
+*.out
 *.bak
-TARGET
 
