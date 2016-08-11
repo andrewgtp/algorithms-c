@@ -1,0 +1,9 @@
+FILES_SRC = $(PATH_EX)/recurse/ex-1.c\
+	$(PATH_SRC)/fact.c \
+	$(PATH_SRC)/facttail.c \
+	$(PATH_SRC)/utils.c
+
+FILES_OBJ = $(PATH_EX)/recurse/ex-1.o\
+         $(PATH_SRC)/fact.o \
+         $(PATH_SRC)/facttail.o \
+         $(PATH_SRC)/utils.o
