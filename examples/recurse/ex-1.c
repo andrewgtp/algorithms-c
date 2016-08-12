@@ -1,41 +1,21 @@
-/*****************************************************************************
-*                                                                            *
-*  ex-1.c                                                                    *
-*  ======                                                                    *
-*                                                                            *
-*  Description: Illustrates computing a factorial using recursion and tail   *
-*               recursion (see Chapter 3).                                   *
-*                                                                            *
-*****************************************************************************/
-
+/* Description: Illustrates computing a factorial using recursion and tai */
 #include <stdio.h>
 
 #include "fact.h"
 #include "facttail.h"
 
-/*****************************************************************************
-*                                                                            *
-*  --------------------------------- main ---------------------------------  *
-*                                                                            *
-*****************************************************************************/
-
+/* --------------------------------- main -------------------------------- */
 int main(int argc, char **argv) {
 
-int                n;
+    int                n;
 
-/*****************************************************************************
-*                                                                            *
-*  Computer the factorials of several numbers.                               *
-*                                                                            *
-*****************************************************************************/
+    /* Computer the factorials of several numbers */
+    for (n = 0; n <= 13; n++) {
 
-for (n = 0; n <= 13; n++) {
+       fprintf(stdout, "%2d! recursive: %-10d ", n, fact(n));
+       fprintf(stdout, "tail recursive: %-10d\n", facttail(n, 1));
 
-   fprintf(stdout, "%2d! recursive: %-10d ", n, fact(n));
-   fprintf(stdout, "tail recursive: %-10d\n", facttail(n, 1));
+    }
 
-}
-
-return 0;
-
+    return 0;
 }

@@ -1,154 +1,108 @@
-/*****************************************************************************
-*                                                                            *
-*  ex-1.c                                                                    *
-*  ======                                                                    *
-*                                                                            *
-*  Description: Illustrates using a circular list (see Chapter 5).           *
-*                                                                            *
-*****************************************************************************/
-
+/* Description: Illustrates using a circular list (see Chapter 5) */
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "clist.h"
 
-/*****************************************************************************
-*                                                                            *
-*  ------------------------------ print_list ------------------------------  *
-*                                                                            *
-*****************************************************************************/
-
+/* ------------------------------ print_list ----------------------------- */
 static void print_list(const CList *list) {
 
-CListElmt          *element;
+    CListElmt          *element;
 
-int                *data,
-                   size,
-                   i;
+    int                *data,
+		       size,
+		       i;
 
-/*****************************************************************************
-*                                                                            *
-*  Display the circular list.                                                *
-*                                                                            *
-*****************************************************************************/
+    /* Display the circular list */
+    fprintf(stdout, "List size is %d (circling twice)\n", clist_size(list));
 
-fprintf(stdout, "List size is %d (circling twice)\n", clist_size(list));
+    size = clist_size(list);
+    element = clist_head(list);
 
-size = clist_size(list);
-element = clist_head(list);
+    /* Iterate twice through the circular list to verify the circular links */
+    i = 0;
 
-/*****************************************************************************
-*                                                                            *
-*  Iterate twice through the circular list to verify the circular links.     *
-*                                                                            *
-*****************************************************************************/
+    while (i < size * 2) {
 
-i = 0;
+       data = clist_data(element);
+       fprintf(stdout, "list[%03d]=%03d\n", (i % size), *data);
+       element = clist_next(element);
+       i++;
 
-while (i < size * 2) {
-
-   data = clist_data(element);
-   fprintf(stdout, "list[%03d]=%03d\n", (i % size), *data);
-   element = clist_next(element);
-   i++;
-
+    }
 }
 
-return;
-
-}
-
-/*****************************************************************************
-*                                                                            *
-*  --------------------------------- main ---------------------------------  *
-*                                                                            *
-*****************************************************************************/
-
+/* --------------------------------- main -------------------------------- */
 int main(int argc, char **argv) {
 
-CList              list;
-CListElmt          *element;
+    CList              list;
+    CListElmt          *element;
 
-int                *data,
-                   i;
+    int                *data,
+		       i;
 
-/*****************************************************************************
-*                                                                            *
-*  Initialize the circular list.                                             *
-*                                                                            *
-*****************************************************************************/
+    /* Initialize the circular list */
+    clist_init(&list, free);
 
-clist_init(&list, free);
+    /* Perform some circular list operations */
+    element = clist_head(&list);
 
-/*****************************************************************************
-*                                                                            *
-*  Perform some circular list operations.                                    *
-*                                                                            *
-*****************************************************************************/
+    for (i = 0; i < 10; i++) {
 
-element = clist_head(&list);
+       if ((data = (int *)malloc(sizeof(int))) == NULL)
+	  return 1;
 
-for (i = 0; i < 10; i++) {
+       *data = i + 1;
 
-   if ((data = (int *)malloc(sizeof(int))) == NULL)
-      return 1;
+       if (clist_ins_next(&list, element, data) != 0)
+	  return 1;
 
-   *data = i + 1;
+       if (element == NULL)
+	  element = clist_next(clist_head(&list));
+       else
+	  element = clist_next(element);
 
-   if (clist_ins_next(&list, element, data) != 0)
-      return 1;
+    }
 
-   if (element == NULL)
-      element = clist_next(clist_head(&list));
-   else
-      element = clist_next(element);
+    print_list(&list);
 
-}
+    element = clist_head(&list);
 
-print_list(&list);
+    for (i = 0; i < 10; i++)
+       element = clist_next(element);
 
-element = clist_head(&list);
+    data = clist_data(element);
+    fprintf(stdout, "Circling and removing an element after the one containing "
+       "%03d\n",*data);
 
-for (i = 0; i < 10; i++)
-   element = clist_next(element);
+    if (clist_rem_next(&list, element, (void **)&data) != 0)
+       return 1;
 
-data = clist_data(element);
-fprintf(stdout, "Circling and removing an element after the one containing "
-   "%03d\n",*data);
+    free(data);
+    print_list(&list);
 
-if (clist_rem_next(&list, element, (void **)&data) != 0)
-   return 1;
+    element = clist_head(&list);
 
-free(data);
-print_list(&list);
+    for (i = 0; i < 15; i++)
+       element = clist_next(element);
 
-element = clist_head(&list);
+    data = clist_data(element);
+    fprintf(stdout, "Circling and inserting 011 after the element containing "
+       "%03d\n", *data);
 
-for (i = 0; i < 15; i++)
-   element = clist_next(element);
+    if ((data = (int *)malloc(sizeof(int))) == NULL)
+       return 1;
 
-data = clist_data(element);
-fprintf(stdout, "Circling and inserting 011 after the element containing "
-   "%03d\n", *data);
+    *data = 11;
+    if (clist_ins_next(&list, element, data) != 0)
+       return 1;
 
-if ((data = (int *)malloc(sizeof(int))) == NULL)
-   return 1;
+    print_list(&list);
 
-*data = 11;
-if (clist_ins_next(&list, element, data) != 0)
-   return 1;
+    /* Destroy the circular list */
+    fprintf(stdout, "Destroying the list\n");
+    clist_destroy(&list);
 
-print_list(&list);
-
-/*****************************************************************************
-*                                                                            *
-*  Destroy the circular list.                                                *
-*                                                                            *
-*****************************************************************************/
-
-fprintf(stdout, "Destroying the list\n");
-clist_destroy(&list);
-
-return 0;
+    return 0;
 
 }
