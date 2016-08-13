@@ -2,17 +2,21 @@
 #define STACK_H
 
 #include <stdlib.h>
-#include "list.h"
 
+#include "list.h"
 
 /* Implement stacks as linked lists */
 typedef List Stack;
 
-/* --------------------------- Public Interface --------------------------- */
+
+/***************************************
+*             Public API               *
+***************************************/
 #define stack_init list_init
 #define stack_destroy list_destroy
 
 int stack_push(Stack *stack, const void *data);
+
 int stack_pop(Stack *stack, void **data);
 
 #define stack_peek(stack) ((stack)->head == NULL ? NULL : (stack)->head->data)

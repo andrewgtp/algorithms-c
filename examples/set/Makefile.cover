@@ -1,0 +1,11 @@
+FILES_SRC = $(PATH_EX)/set/ex-2.c\
+	$(PATH_SRC)/cover.c \
+	$(PATH_SRC)/list.c \
+	$(PATH_SRC)/set.c \
+	$(PATH_SRC)/utils.c
+
+FILES_OBJ = $(PATH_EX)/set/ex-2.o\
+         $(PATH_SRC)/cover.o \
+         $(PATH_SRC)/list.o \
+         $(PATH_SRC)/set.o \
+         $(PATH_SRC)/utils.o

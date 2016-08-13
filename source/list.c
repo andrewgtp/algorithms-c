@@ -4,7 +4,7 @@
 #include "list.h"
 
 
-/* ------------------------------- list_init ------------------------------ */
+/* ------------------------------- list_init ----------------------------- */
 void list_init(List *list, void (*destroy)(void *data)) {
 
     /* Initialize the list */
@@ -12,37 +12,39 @@ void list_init(List *list, void (*destroy)(void *data)) {
     list->destroy = destroy;
     list->head = NULL;
     list->tail = NULL;
+
 }
 
-/* ------------------------------- list_destroy ------------------------------ */
+/* ----------------------------- list_destroy ---------------------------- */
 void list_destroy(List *list) {
 
-    void *data;
+    void               *data;
 
     /* Remove each element */
     while (list_size(list) > 0) {
 
-       int is_not_empty = list_rem_next(list, NULL, (void **)&data);
-       if (is_not_empty == 0 && list->destroy != NULL) {
+       if (list_rem_next(list, NULL, (void **)&data) == 0 && list->destroy !=
+	  NULL) {
 
-	  /* Call a user-defined function to free dynamically allocated data. */
+	  /* Call a user-defined function to free dynamically allocated data */
 	  list->destroy(data);
-       }  /* else: nothing to do! */
+
+       }
+
     }
 
     /* No operations are allowed now, but clear the structure as a precaution */
     memset(list, 0, sizeof(List));
+
 }
 
-/* ------------------------------- list_ins_next ------------------------------ */
+/* ----------------------------- list_ins_next --------------------------- */
 int list_ins_next(List *list, ListElmt *element, const void *data) {
 
-    ListElmt *new_element;
-
+    ListElmt           *new_element;
 
     /* Allocate storage for the element */
-    new_element = (ListElmt *)malloc(sizeof(ListElmt));
-    if (new_element == NULL)
+    if ((new_element = (ListElmt *)malloc(sizeof(ListElmt))) == NULL)
        return -1;
 
     /* Insert the element into the list */
@@ -72,12 +74,14 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
     list->size++;
 
     return 0;
+
 }
 
-/* ------------------------------- list_rem_next ------------------------------ */
+
+/* ----------------------------- list_rem_next --------------------------- */
 int list_rem_next(List *list, ListElmt *element, void **data) {
 
-    ListElmt *old_element;
+    ListElmt           *old_element;
 
     /* Do not allow removal from an empty list */
     if (list_size(list) == 0)
@@ -106,6 +110,7 @@ int list_rem_next(List *list, ListElmt *element, void **data) {
 
        if (element->next == NULL)
 	  list->tail = element;
+
     }
 
     /* Free the storage allocated by the abstract data type */
@@ -115,4 +120,5 @@ int list_rem_next(List *list, ListElmt *element, void **data) {
     list->size--;
 
     return 0;
+
 }

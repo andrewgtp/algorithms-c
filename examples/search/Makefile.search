@@ -1,0 +1,9 @@
+FILES_SRC = $(PATH_EX)/search/ex-1.c\
+	$(PATH_SRC)/bisearch.c \
+	$(PATH_SRC)/issort.c \
+	$(PATH_SRC)/utils.c
+
+FILES_OBJ = $(PATH_EX)/search/ex-1.o\
+         $(PATH_SRC)/bisearch.o \
+         $(PATH_SRC)/issort.o \
+         $(PATH_SRC)/utils.o

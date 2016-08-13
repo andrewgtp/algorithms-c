@@ -1,0 +1,7 @@
+FILES_SRC = $(PATH_EX)/$(TARGET)/ex-1.c\
+	$(PATH_SRC)/heap.c \
+	$(PATH_SRC)/utils.c
+
+FILES_OBJ = $(PATH_EX)/$(TARGET)/ex-1.o\
+         $(PATH_SRC)/heap.o \
+         $(PATH_SRC)/utils.o
