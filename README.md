@@ -4,15 +4,27 @@
 The purpose of this repo is to demonstrate algorithms in C based on a fork from Kyle Louden's book Mastering Algorithms in C. 
 
 
-### Setup 
+## Run Examples
 
-Add this line to the bottom of your .bash_profile so that Makefile
-can see your code:
+```
+$ git clone https://github.com/andrewgtp/algorithms-c
+$ cd algorithms-c
+$ make list; make run
+$ make dlist; make run
+$ make set; make run
+```
+etc.
 
-export PATH_ROOT=<path to your git clone here>/cs/C/demo_louden
+see: Makefile for more examples
+
+## Exercises
+Unlike the rest of this repo where examples are separated into source, include and examples directories, in the exercises directory you will find standalone files with all the code necessary to run one data type or algorithm.
+
+TBD:
+Add additional exercises replacing code with statements, ascii diagrams for the user to fill in as practice.
 
 
-### Copyright/Disclaimer
+## Copyright/Disclaimer
 
 This repo contains some code from the book "Mastering Algorithms with C",  published by O'Reilly & Associates
 plus several examples illustrating how to use it.  All of the code was written
