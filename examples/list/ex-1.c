@@ -49,6 +49,7 @@ int main(int argc, char **argv) {
     print_log_header("EXAMPLE #1");
     /***********************************************/
 
+    printf("Insert new elements before head of list\n");
     element = list_head(&list);
 
     for (i = 10; i > 0; i--) {
@@ -66,8 +67,32 @@ int main(int argc, char **argv) {
 
     print_list(&list);
 
+
+    fprintf(stdout, "Destroy the list\n");
+    list_destroy(&list);
+
     /***********************************************/
     print_log_header("EXAMPLE #2");
+    /***********************************************/
+
+    printf("Insert new elements after tail of list\n");
+    for (i = 30; i < 40; i++) {
+
+        data = (int *)malloc(sizeof(int));
+        if (data == NULL)
+            return 1;
+
+        *data = i;
+
+        is_not_empty = list_ins_next(&list, list_tail(&list), data); 
+	if (is_not_empty != 0)
+	  return 1;
+    }
+
+    print_list(&list);
+
+    /***********************************************/
+    print_log_header("EXAMPLE #3");
     /***********************************************/
 
     element = list_head(&list);
@@ -85,7 +110,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     /***********************************************/
-    print_log_header("EXAMPLE #3");
+    print_log_header("EXAMPLE #4");
     /***********************************************/
 
     fprintf(stdout, "Inserting 011 at the tail of the list\n");
@@ -100,7 +125,7 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Removing an element after the first element\n");
 
     /***********************************************/
-    print_log_header("EXAMPLE #4");
+    print_log_header("EXAMPLE #5");
     /***********************************************/
 
     element = list_head(&list);
@@ -111,7 +136,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     /***********************************************/
-    print_log_header("EXAMPLE #5");
+    print_log_header("EXAMPLE #6");
     /***********************************************/
 
     fprintf(stdout, "Inserting 012 at the head of the list\n");
@@ -124,7 +149,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     /***********************************************/
-    print_log_header("EXAMPLE #6");
+    print_log_header("EXAMPLE #7");
     /***********************************************/
 
     fprintf(stdout, "Iterating and removing the fourth element\n");
@@ -140,7 +165,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     /***********************************************/
-    print_log_header("EXAMPLE #7");
+    print_log_header("EXAMPLE #8");
     /***********************************************/
 
     fprintf(stdout, "Inserting 013 after the first element\n");
@@ -153,7 +178,7 @@ int main(int argc, char **argv) {
     print_list(&list);
 
     /***********************************************/
-    print_log_header("EXAMPLE #8");
+    print_log_header("EXAMPLE #9");
     /***********************************************/
 
     i = list_is_head(&list, list_head(&list));
@@ -166,11 +191,12 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Testing list_is_tail...Value=%d (0=OK)\n", i);
 
 
+
     /***********************************************/
-    print_log_header("EXAMPLE #9");
+    print_log_header("CLEANUP");
     /***********************************************/
 
-    fprintf(stdout, "Destroying the list\n");
+    fprintf(stdout, "Destroy the list\n");
     list_destroy(&list);
 
     return 0;
