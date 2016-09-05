@@ -46,9 +46,9 @@ endif
 EXE    = ex.out 
 
 # define the compile and link options
-CC     = c89
-LL     = c89
-CFLAGS =
+CC     = gcc   # c89
+LL     = gcc   # c89 
+CFLAGS = -ggdb # compile symbols for gdb 
 LFLAGS =
 
 
@@ -57,7 +57,7 @@ $(EXE): $(FILES_OBJ)
 	$(LL) $(LFLAGS) -o $@ $(FILES_OBJ) $(PATH_LIBS) $(FILES_LIBS)
 
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $(PATH_INCLUDE) $<
+	$(CC) $(CFLAGS) -o $@  -c $(PATH_INCLUDE) $<
 
 list clist clist2 dlist pqueue queue stack recurse-factor recurse-facttail search spell set set-cover sort directls:
 	make clean
