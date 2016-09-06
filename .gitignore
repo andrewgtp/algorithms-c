@@ -4,4 +4,6 @@
 **/ex-1
 *.out
 *.bak
+.idea/
+~archive/
 
