@@ -50,11 +50,42 @@ set(SOURCE_FILES_PQUEUE
         source/utils.c
         )
 
+set(SOURCE_FILES_QUEUE
+        examples/queue/ex-1.c
+        include/queue.h
+        include/list.h
+        include/utils.h
+        source/list.c
+        source/queue.c
+        source/utils.c
+        )
+
+set(SOURCE_FILES_RECURSE
+        examples/recurse/ex-1.c
+        include/fact.h
+        include/facttail.h
+        include/utils.h
+        source/fact.c
+        source/facttail.c
+        source/utils.c
+        )
+
+set(SOURCE_FILES_RECURSE2
+        examples/recurse/ex-2.c
+        include/factor.h
+        include/utils.h
+        source/factor.c
+        source/utils.c
+        )
+
 add_executable(list.out ${SOURCE_FILES_LIST})
 add_executable(clist.out ${SOURCE_FILES_CLIST})
 add_executable(clist2.out ${SOURCE_FILES_CLIST2})
 add_executable(dlist.out ${SOURCE_FILES_DLIST})
 add_executable(pqueue.out ${SOURCE_FILES_PQUEUE})
+add_executable(queue.out ${SOURCE_FILES_QUEUE})
+add_executable(recurse.out ${SOURCE_FILES_RECURSE})
+add_executable(recurse2.out ${SOURCE_FILES_RECURSE2})
 
 
 
