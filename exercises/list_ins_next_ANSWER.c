@@ -4,86 +4,125 @@
 
 int list_ins_next(List *list, ListElmt *element, const void *data) {
 
+    // HINT:
+    // List == chain
+    // ListElemt == link (node) in chain
+
+    // Create a new node called: new_element 
+
+    // CODE:
     ListElmt *new_element;
 
+    // alloc mem for new_element
+    // Allocate memory for new_element
+    // HINT: wrap in a conditional and return -1 if unable to allocate
     if ((new_element = (ListElmt *)malloc(sizeof(ListElmt))) == NULL)
         return -1;
 
-    // Insert the element into the list
+    // Insert data into new element 
+    // TODO: why do we need (void *) in front? Why do we need to cast to void here
+
+    //CODE
     new_element->data = (void *)data;
 
-/*       
-                                           +---------+------+
-      new_element:                         | *data   | NULL |
-                                           +---------+------+
-                                                       next
-*/
 
+    // if:
+    // Handle insertion somewhere at the head
+    // TODO: why not pointer to element?
     if (element == NULL) {
-
-	// Handle insertion somewhere at the head
-	if (list_size(list) == 0)
-	    list->tail = new_element;
-
-
-	new_element->next = list->head;
-	list->head = new_element;
-
-    } else {
-
-	// Handle insertion somewhere other than at the head
-	if (element->next == NULL) {
-
-/*               +---------+------+
-       element:  |         | NULL |
-                 +---------+------+
-                             next
-*/  
+        if (list_size(list) == 0) 
             list->tail = new_element;
-/*                                                                    +---------+------+
-                                                                      |         | NULL |
-                                                                      +---------+------+
-                                                                       new_element next
-    
-                 +---------+------+                                   +---------+------+
-       list:     |         |   *  |----------------------------------->         |   *  |
-                 +---------+------+                                   +---------+------+
-                                                                                  
-*/
+        new_element->next = list->head;
+        list->head = new_element;     
+        
+    // else:
+    // TODO: lookup list properties
+    } else {
+    // Handle new_element insertion somewhere other than at the head
+        if (element->next == NULL) {
+            list->tail = new_element;
+    /*
+    // We have a new element not linked to anything (and whos next pointer points to NULL)
+    // Here is out list where we want to insert a new element
+    // We could insert it in one of 3 ways:
+
+    // [A]. in front of HEAD 
+    // [B]. after TAIL 
+    // [C]. somewhere between HEAD & TAIL 
+
+    // =============================================== 
+    // SCENARIO A: in front of HEAD 
+    // =============================================== 
+
+		   new_element
+		+---------+---+--+     +---------+---+--+     +---------+------+
+    list:       |         | NULL |     |         |   *  +----->         | NULL |
+		+---------+---+--+     +---------+------+     +---------+------+
+     
+					^^^^^ HEAD ^^^^^      ^^^^^ TAIL ^^^^^ 
+
+
+
+    // =============================================== 
+    // SCENARIO B: after TAIL
+    // =============================================== 
+
+											new_element
+				       +---------+---+--+     +---------+------+     +---------+------+
+    list:                              |         |   *  +----->         | NULL |     |         | NULL |
+				       +---------+------+     +---------+------+     +---------+------+
+     
+					^^^^^ HEAD ^^^^^      ^^^^^ TAIL ^^^^^ 
+
+
+    // =============================================== 
+    // SCENARIO C: somewhere between HEAD & TAIL 
+    // =============================================== 
+
+								 new_element
+							      +---------+------+
+    new:                                             +-------->         |   *  +-----------+
+						     |        +---------+------+           |
+						     |                                     |
+						     |                                     |
+						     |                                     |
+				       +---------+---+--+                            +-----v---+------+
+    list:                              |         |   *  +---------------------------->         | NULL |
+				       +---------+------+                            +---------+------+
+     
+					^^^^^ HEAD ^^^^^                              ^^^^^ TAIL ^^^^^ 
+    */
+
+    }
+    // Assign new_element node's next ptr to element node's next ptr
+    new_element->next = element->next;
+
+    // Assign element node's next ptr to new_element
+    element->next = new_element;
+
+
     }
 
-
-new_element->next = element->next;
-/*
-                                           +---------+------+
- element:                                  |         |   *  +---------------+
-                                           +---------+------+               |
-                                            new_element next                |
-                                                                            |
-                                                                            |
-                 +---------+---+--+                                   +-----v---+------+
- list:           |         |   *  |----------------------------------->         |   *  |
-                 +---------+------+                                   +---------+------+
-                   element   next
-*/
-element->next = new_element;
-/*
-                                           +---------+------+
- element:                      +----------->         |   *  +---------------+
-                               |           +---------+------+               |
-                               |            new_element next                |
-                               |                                            |
-                               |                                            |
-                 +---------+---+--+                                   +-----v---+------+
- list:           |         |   *  |                                   |         |   *  |
-                 +---------+------+                                   +---------+------+
-                   element   next
-*/
-
-    }
-
-    /* Adjust the size of the list to account for the inserted element */
-    list->size++;
+    // Adjust the size of the list to account for the inserted element.
+    list->size++;    
     return 0;
 }
 
+// ===============================
+// TEMPLATE
+// ===============================
+
+/*
+                                                          +---------+------+
+new:                                             +-------->         |   *  +-----------+
+                                                 |        +---------+------+           |
+                                                 |          new_element next           |
+                                                 |                                     |
+                                                 |                                     |
+            +---------+---+--+     +---------+---+--+                            +-----v---+------+
+list:       |         |   *  +----->         |   *  +---------------------------->         |   *  |
+            +---------+---+--+     +---------+------+                            +---------+------+
+                                     element   next
+ 
+             ^^^^^ HEAD ^^^^^       ^^^^^ HEAD ^^^^^                              ^^^^^ TAIL ^^^^^ 
+*/
