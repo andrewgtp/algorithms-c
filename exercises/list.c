@@ -33,7 +33,7 @@ static void print_list(const List *list) {
     int                *data, i;
 
     /* Display the linked list */
-    fprintf(stdout, "List size is %d\n", &list_size(list));
+    fprintf(stdout, "List size is %d\n", list->size);
 
     i = 0;
     element = list_head(list);
