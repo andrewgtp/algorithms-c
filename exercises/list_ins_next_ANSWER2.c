@@ -26,43 +26,48 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
     new_element->data = (void *)data;
 
 
+    // if:
+    // Handle insertion somewhere at the head
+    // TODO: why not pointer to element?
     if (element == NULL) {
-      //if ((list_size(&list) == 0) {
-	if (list->head == list->tail) {
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	    printf("[A]. insert in an empty list\n");
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	    list->tail = new_element;
-	} else {
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	    printf("[B]. insert in front of HEAD\n");
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	}
-	new_element->next = list->head;
-	list->head = new_element;     
-    } else {
-        // TODO: THIS IS BROKEN!!!  WE NEVER GET HERE!!!!
-        int *d = element->next->data;
-        fprintf(stdout, "ELEMENT->NEXT->DATA: %d\n", *d);
-
-	if (element->next == NULL) {
-
-	//if (element == list->tail) {
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	    printf("[C]. insert after TAIL\n");
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        if (list_size(list) == 0) 
             list->tail = new_element;
-	} else {
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	    printf("[D]. insert somewhere between HEAD & TAIL\n");
-	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	}
+        new_element->next = list->head;
+        list->head = new_element;     
+        
+    // else:
+    // TODO: lookup list properties
+    } else {
+    // Handle new_element insertion somewhere other than at the head
+        if (element->next == NULL)
+            list->tail = new_element;
+
 	// Assign new_element node's next ptr to element node's next ptr
 	new_element->next = element->next;
+
 	// Assign element node's next ptr to new_element
 	element->next = new_element;
     }
-
+    if ((element == NULL) && (list->head == list->tail)) {
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        printf("[A]. in an empty list\n");
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    }
+    if ((element == NULL) && (list->head != list->tail)) {
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        printf("[B]. in front of HEAD\n");
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    }
+    if ((element != NULL) && (element->next == NULL)) {
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        printf("[C]. after TAIL\n");
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    }
+    if ((element != NULL) && (element->next != NULL)) {
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        printf("[D]. somewhere between HEAD & TAIL\n");
+        printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    }
 
     // **************************************************************************
 

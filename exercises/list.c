@@ -33,7 +33,7 @@ static void print_list(const List *list) {
     int                *data, i;
 
     /* Display the linked list */
-    fprintf(stdout, "List size is %d\n", list_size(list));
+    fprintf(stdout, "List size is %d\n", &list_size(list));
 
     i = 0;
     element = list_head(list);
@@ -79,6 +79,7 @@ int main(int argc, char **argv) {
 
         *data = i;
 
+        fprintf(stdout, "Inserting a new element before the HEAD: %03d\n", *data);
         is_not_empty = list_ins_next(&list, NULL, data); 
 	if (is_not_empty != 0)
 	  return 1;
@@ -108,22 +109,39 @@ int main(int argc, char **argv) {
     print_log_header("EXAMPLE #3");
     /***********************************************/
 
-    fprintf(stdout, "Inserting 011 at the tail of the list\n");
+    fprintf(stdout, "Inserting 44 at the tail of the list\n");
 
-    *data = 11;
+    *data = 44;
+
+    /*
+    printf("LIST SIZE: %d\n", list_size(&list));
+
+    i = list_is_tail(list_tail(&list));
+    fprintf(stdout, "Testing list_is_tail...Value=%d (0=true, 1 false\n", i); 
+
+    i = list_is_head(&list, list_head(&list));
+    fprintf(stdout, "Testing list_is_head...Value=%d (0=true, 1 false)\n", i); 
+
+    */
+
+    print_list(&list);
+
     is_not_empty =  list_ins_next(&list, list_tail(&list), data);
     if (is_not_empty != 0)
        return 1;
 
     print_list(&list);
 
-    fprintf(stdout, "Removing an element after the first element\n");
+    exit(0);
+    //fprintf(stdout, "Removing an element after the first element\n");
 
     /***********************************************/
     print_log_header("EXAMPLE #4");
     /***********************************************/
 
+
     element = list_head(&list);
+    fprintf(stdout, "Removing an element after the HEAD\n");
     is_not_empty = list_rem_next(&list, element, (void **)&data);
     if (is_not_empty != 0)
        return 1;
@@ -166,7 +184,9 @@ int main(int argc, char **argv) {
     fprintf(stdout, "Inserting 013 after the first element\n");
 
     *data = 13;
-    is_not_empty =  list_ins_next(&list, list_tail(&list), data);
+
+    //is_not_empty = list_ins_next(&list, list_tail(&list), data);
+    is_not_empty = list_ins_next(&list, list_head(&list), data);
     if (is_not_empty != 0)
        return 1;
 

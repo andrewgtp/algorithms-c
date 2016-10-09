@@ -13,7 +13,11 @@ echo
 echo "Enter your code into the appropriate QUESTION file."
 echo "Use the diagrams as a hint."
 echo
-options=("list_ins_next_ANSWER" "list_ins_next_QUESTION" "Quit")
+options=(
+"list_ins_next_ANSWER" 
+"list_ins_next_ANSWER2" 
+"list_ins_next_ANSWER3" 
+"Quit")
 PS3="Select the option above you want to compile/run:  "
 
 select opt in "${options[@]}"
@@ -24,9 +28,14 @@ do
             $CC list.out list.c list_ins_next_ANSWER.c
             break
             ;;
-        "list_ins_next_QUESTION")
-            echo "RUN: list_ins_next_QUESTION"
-            $CC list.out list.c list_ins_next_QUESTION.c
+        "list_ins_next_ANSWER2")
+            echo "RUN: list_ins_next_ANSWER2"
+            $CC list.out list.c list_ins_next_ANSWER2.c
+            break
+            ;;
+        "list_ins_next_ANSWER3")
+            echo "RUN: list_ins_next_ANSWER3"
+            $CC list.out list.c list_ins_next_ANSWER3.c
             break
             ;;
         "Quit")
