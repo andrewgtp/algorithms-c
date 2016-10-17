@@ -5,5 +5,10 @@
 *.out
 *.bak
 .idea/
-~archive/
+out/
 
+# CMake artifacts
+Makefile
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
