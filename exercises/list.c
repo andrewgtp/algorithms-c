@@ -56,7 +56,6 @@ static void print_list(const List *list) {
        else
 	  element = list_next(element);
     }
-    return;
 }
 
 
@@ -69,7 +68,6 @@ int main(int argc, char **argv) {
     print_log_header("DATA STRUCTURES: LISTS");
 
     list_init(&list, free);
-
 
     /***********************************************/
     print_log_header("EXAMPLE #1");
@@ -119,17 +117,6 @@ int main(int argc, char **argv) {
 
     *data = 44;
 
-    /*
-    printf("LIST SIZE: %d\n", list_size(&list));
-
-    i = list_is_tail(list_tail(&list));
-    fprintf(stdout, "Testing list_is_tail...Value=%d (0=true, 1 false\n", i); 
-
-    i = list_is_head(&list, list_head(&list));
-    fprintf(stdout, "Testing list_is_head...Value=%d (0=true, 1 false)\n", i); 
-
-    */
-
     print_list(&list);
 
     is_not_empty =  list_ins_next(&list, list_tail(&list), data);
@@ -138,13 +125,9 @@ int main(int argc, char **argv) {
 
     print_list(&list);
 
-    exit(0);
-    //fprintf(stdout, "Removing an element after the first element\n");
-
     /***********************************************/
     print_log_header("EXAMPLE #4");
     /***********************************************/
-
 
     element = list_head(&list);
     fprintf(stdout, "Removing an element after the HEAD\n");
@@ -222,8 +205,6 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-
-
 /* ------------------------------- list_init ----------------------------- */
 void list_init(List *list, void (*destroy)(void *data)) {
 
@@ -232,7 +213,6 @@ void list_init(List *list, void (*destroy)(void *data)) {
     list->destroy = destroy;
     list->head = NULL;
     list->tail = NULL;
-
 }
 
 /* ----------------------------- list_destroy ---------------------------- */
@@ -248,14 +228,11 @@ void list_destroy(List *list) {
 
 	  /* Call a user-defined function to free dynamically allocated data */
 	  list->destroy(data);
-
        }
-
     }
 
     /* No operations are allowed now, but clear the structure as a precaution */
     memset(list, 0, sizeof(List));
-
 }
 
 /* ----------------------------- list_ins_next --------------------------- */
@@ -304,7 +281,4 @@ int list_rem_next(List *list, ListElmt *element, void **data) {
     list->size--;
 
     return 0;
-
 }
-
-

@@ -25,11 +25,8 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
     //CODE
     new_element->data = (void *)data;
 
-
     if (element == NULL) {
-        //if (list_size(list) == 0) {
         if (list->head == NULL) {
-	//if (list->head == list->tail) {
 	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 	    printf("[A]. insert in an empty list\n");
 	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -42,13 +39,7 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
 	new_element->next = list->head;
 	list->head = new_element;     
     } else {
-        // TODO: THIS IS BROKEN!!!  WE NEVER GET HERE!!!!
-        //int *d = element->next->data;
-        //fprintf(stdout, "ELEMENT->NEXT->DATA: %d\n", *d);
-
 	if (element->next == NULL) {
-
-	//if (element == list->tail) {
 	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 	    printf("[C]. insert after TAIL\n");
 	    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
