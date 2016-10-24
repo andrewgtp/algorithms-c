@@ -43,6 +43,20 @@ void basic() {
     print_log_header("VAR ADDRESSES"); 
     printf("&num: %p\n", &num);
     printf("&num_ptr: %p\n\n\n", &num_ptr);
+
+
+    printf("Example 1: Increment num value: num++\n");
+    num++;
+    
+    printf("num: %d\n", num);
+
+    printf("Example 2: Set num to 10: *num_ptr = 10\n");
+    *num_ptr = 10; 
+
+    printf("num: %d\n", num);
+ 
+ 
+
 }
 
 int main() {
