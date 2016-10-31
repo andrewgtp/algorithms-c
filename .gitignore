@@ -4,4 +4,11 @@
 **/ex-1
 *.out
 *.bak
+.idea/
+out/
 
+# CMake artifacts
+Makefile
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
