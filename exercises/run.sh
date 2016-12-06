@@ -11,22 +11,24 @@ echo "LIST EXERCISE"
 echo "--------------------------------------"
 echo
 echo "Enter your code into the appropriate QUESTION file."
+echo "or run the ANSWER code."
+echo 
 echo "Use the diagrams as a hint."
 echo
-options=("list_ins_next_ANSWER" "list_ins_next_QUESTION" "Quit")
+options=("ANSWER-code" "QUESTION-code" "Quit")
 PS3="Select the option above you want to compile/run:  "
 
 select opt in "${options[@]}"
 do
     case $opt in
-       "list_ins_next_ANSWER")
+       "ANSWER-code")
             echo "RUN: list_ins_next_ANSWER (same as above, but includes diagrams)"
-            $CC list.out list.c list_ins_next_ANSWER.c
+            $CC list.out list.c list_ins_next_ANSWER.c list_rem_next_ANSWER.c
             break
             ;;
-        "list_ins_next_QUESTION")
-            echo "RUN: list_ins_next_QUESTION"
-            $CC list.out list.c list_ins_next_QUESTION.c
+       "QUESTION-code")
+            echo "RUN: your QUESTION code." 
+            $CC list.out list.c list_ins_next_ANSWER.c list_rem_next_QUESTION.c
             break
             ;;
         "Quit")
