@@ -3,19 +3,31 @@
 
 The purpose of this repo is to demonstrate algorithms in C based on a fork from Kyle Louden's book Mastering Algorithms in C. 
 
-
-## Run Examples
-
+## Installation
 ```
 $ git clone https://github.com/andrewgtp/algorithms-c
 $ cd algorithms-c
-$ make list; make run
-$ make dlist; make run
-$ make set; make run
 ```
-etc.
+CMake Install Instructions: [here](https://cmake.org/install/)
 
-see: Makefile for more examples
+
+### Mac Users
+```
+brew install cmake
+```
+
+## Run Examples
+
+### From the command line
+
+```
+$ cmake CMakeLists.txt
+```
+
+### From CLion (JetBrains)
+Import algorithms-c project
+build and run examples separately
+
 
 ## Exercises
 Unlike the rest of this repo where examples are separated into source, include and examples directories, in the exercises directory you will find standalone files with all the code necessary to run one data type or algorithm.
