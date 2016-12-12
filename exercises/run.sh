@@ -16,7 +16,8 @@ echo
 echo "Use the diagrams as a hint."
 echo
 options=("ANSWER-code" "list_ins_next_QUESTION" "list_rem_next_QUESTION" "Quit")
-PS3="Select the option above you want to compile/run:  "
+PS3="Select the option above you want to compile/run.  Make sure you create your own QUESTION file first:"
+
 
 select opt in "${options[@]}"
 do

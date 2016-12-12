@@ -46,12 +46,12 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
     // Here is out list where we want to insert a new element
     // We could insert it in one of 3 ways:
 
-    // [A]. in front of HEAD 
-    // [B]. after TAIL 
-    // [C]. somewhere between HEAD & TAIL 
+    // [A]. insert in front of HEAD 
+    // [B]. insert after TAIL 
+    // [C]. insert somewhere between HEAD & TAIL 
 
     // =============================================== 
-    // SCENARIO A: in front of HEAD 
+    // SCENARIO A: insert in front of HEAD 
     // =============================================== 
 
 		   new_element
@@ -64,7 +64,7 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
 
 
     // =============================================== 
-    // SCENARIO B: after TAIL
+    // SCENARIO B: insert after TAIL
     // =============================================== 
 
 											new_element
@@ -76,7 +76,7 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
 
 
     // =============================================== 
-    // SCENARIO C: somewhere between HEAD & TAIL 
+    // SCENARIO C: insert somewhere between HEAD & TAIL 
     // =============================================== 
 
 								 new_element

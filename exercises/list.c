@@ -234,10 +234,10 @@ void list_destroy(List *list) {
 
 /* ----------------------------- list_ins_next --------------------------- */
 
-// SOURCE IN: list_ins_next.c
+// SOURCE IN: list_ins_next_ANSWER.c
 
 /* ----------------------------- list_rem_next --------------------------- */
 
-// SOURCE IN: list_ins_next.c
+// SOURCE IN: list_ins_next_ANSWER.c
 
 
