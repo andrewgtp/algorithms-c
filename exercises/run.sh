@@ -39,17 +39,17 @@ do
             ;;
        "ANSWER-code-dlist")
             echo "RUN: dlist_ins_next_ANSWER (same as above, but includes diagrams)"
-            $CC dlist.out dlist.c dlist_ins_next_ANSWER.c dlist_rem_next_ANSWER.c
+            $CC list.out dlist.c dlist_ins_next_ANSWER.c dlist_rem_next_ANSWER.c
             break
             ;;
        "dlist_ins_next_QUESTION")
             echo "RUN: your QUESTION code." 
-            $CC dlist.out dlist.c dlist_ins_next_QUESTION.c dlist_rem_next_ANSWER.c
+            $CC list.out dlist.c dlist_ins_next_QUESTION.c dlist_rem_next_ANSWER.c
             break
             ;;
        "dlist_rem_next_QUESTION")
             echo "RUN: your QUESTION code." 
-            $CC dlist.out dlist.c dlist_ins_next_ANSWER.c dlist_rem_next_QUESTION.c
+            $CC list.out dlist.c dlist_ins_next_ANSWER.c dlist_rem_next_QUESTION.c
             break
             ;;
         "Quit")

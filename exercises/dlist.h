@@ -1,38 +1,45 @@
-#ifndef LIST_H
-#define LIST_H
+#ifndef DLIST_H
+#define DLIST_H
+
+#include <stdlib.h>
+
+
 
 /* linked-list element structure */
-typedef struct ListElmt_ {
+typedef struct DListElmt_ {
 
     void               *data;
-    struct ListElmt_   *next;
+    struct DListElmt_  *prev;
+    struct DListElmt_  *next;
 
-} ListElmt;
+} DListElmt;
 
 
-/* linked list structure */
-typedef struct List_ {
+/* doubly-linked list structure */
+typedef struct DList_ {
 
     int                size;
     int                (*match)(const void *key1, const void *key2);
     void               (*destroy)(void *data);
-    ListElmt           *head;
-    ListElmt           *tail;
+    DListElmt          *head;
+    DListElmt          *tail;
 
-} List;
+} DList;
 
-void list_init(List *list, void (*destroy)(void *data));
-void list_destroy(List *list);
-int list_ins_next(List *list, ListElmt *element, const void *data);
-int list_rem_next(List *list, ListElmt *element, void **data);
+void dlist_init(DList *list, void (*destroy)(void *data));
+void dlist_destroy(DList *list);
+int dlist_ins_prev(DList *list, DListElmt *element, const void *data);
+int dlist_ins_next(DList *list, DListElmt *element, const void *data);
+int dlist_remove(DList *list, DListElmt *element, void **data);
 
-#define list_size(list) ((list)->size)
-#define list_head(list) ((list)->head)
-#define list_tail(list) ((list)->tail)
-#define list_is_head(list, element) ((element) == (list)->head ? 1 : 0)
-#define list_is_tail(element) ((element)->next == NULL ? 1 : 0)
-#define list_data(element) ((element)->data)
-#define list_next(element) ((element)->next)
+#define dlist_size(list) ((list)->size)
+#define dlist_head(list) ((list)->head)
+#define dlist_tail(list) ((list)->tail)
+#define dlist_is_head(element) ((element)->prev == NULL ? 1 : 0)
+#define dlist_is_tail(element) ((element)->next == NULL ? 1 : 0)
+#define dlist_data(element) ((element)->data)
+#define dlist_prev(element) ((element)->prev)
+#define dlist_next(element) ((element)->next)
 
 
 #endif
